@@ -5,6 +5,9 @@ WORKDIR /app/frontend
 COPY frontend/package*.json ./  
 RUN npm install  
 COPY frontend/ .  
+  
+# Set Node.js options to fix crypto.hash issue  
+ENV NODE_OPTIONS="--openssl-legacy-provider"  
 RUN npm run build  
   
 # 第二阶段：运行后端  
